@@ -6,7 +6,7 @@ A free, gamified, local-first PWA for intentional living. No account, ads or clo
 
 ## Development status
 
-M0 foundation / M1 app shell in development. The shell is not the complete MVP: daily habit logging, journals, points, backup and faith tools are planned, not yet implemented. Use fictitious information only in development.
+M2a in development: editable Life Vision categories and a daily Morning Affirmation check-in, stored locally. Goal-to-habit links, daily priorities, quantity tracking, journals, points, backup and faith tools remain planned. This is not the complete MVP. Use fictitious information only in development.
 
 ## Get started
 

@@ -1,5 +1,6 @@
 import Dexie, { type Table } from 'dexie'
 import { z } from 'zod'
+import type { VisionRecord, AffirmationRecord, AffirmationLog, AffirmationMode } from '../domain/dailyActions'
 
 export const settingsSchema = z.object({
   id:z.literal('local'),
@@ -12,9 +13,14 @@ export const defaults: Settings = {id:'local',onboarded:false,faithMode:false,th
 
 export class BetterDailyDB extends Dexie {
   settings!: Table<Settings, string>
+  goals!: Table<VisionRecord, string>
+  affirmations!: Table<AffirmationRecord, AffirmationMode>
+  affirmationLogs!: Table<AffirmationLog, string>
   constructor(name='BetterDaily') {
     super(name)
     this.version(1).stores({settings:'id'})
+    // Add stores without resetting the existing settings database.
+    this.version(2).stores({settings:'id',goals:'id',affirmations:'mode',affirmationLogs:'localDate'})
   }
 }
 export const db = new BetterDailyDB()

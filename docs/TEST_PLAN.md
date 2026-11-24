@@ -8,3 +8,7 @@
 
 ## MVP gate
 All PRD T01–T12, including backup roundtrip, failed storage, midnight/timezone/DST, migrations, cross-tab updates, religious content accuracy, and data loss/security checks. Zero known P0/P1 issues before release. Tests in this branch are authored, not evidence that they have passed. Record CI results and owner acceptance before merge.
+
+## M2a additional gate
+
+Verify version 1 settings survive upgrade, six optional vision categories, rename/hide/edit/reload, invalid data rejection, separate faith/general affirmation text, date-keyed duplicate prevention, undo and offline write/reload. Check unsaved drafts before navigating, keyboard and mobile forms, and visible storage errors. CI and real-device review required before merge. Links, daily priorities and remaining habits are still outstanding.
