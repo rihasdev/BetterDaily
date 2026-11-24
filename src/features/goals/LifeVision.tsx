@@ -50,7 +50,7 @@ export function LifeVision(){
         {rows.every(row=>row.hidden)&&<section className="card"><EyeOff aria-hidden="true"/><p>All categories are hidden. Use Edit categories to show them again.</p></section>}
         {rows.some(row=>row.hidden)&&<p className="muted small"><Eye size={16} aria-hidden="true" className="inline-icon"/> Hidden categories are retained on this device.</p>}
       </>}
-      <p className="muted small">Goal-to-habit links and daily priorities will be added in a later increment. No XP is awarded yet.</p>
+      <p className="muted small">Link habits to your vision in Settings, or choose a linked daily priority below. No XP is awarded yet.</p>
     </>}
   </>
 }

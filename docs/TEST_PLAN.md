@@ -12,3 +12,6 @@ All PRD T01–T12, including backup roundtrip, failed storage, midnight/timezone
 ## M2a additional gate
 
 Verify version 1 settings survive upgrade, six optional vision categories, rename/hide/edit/reload, invalid data rejection, separate faith/general affirmation text, date-keyed duplicate prevention, undo and offline write/reload. Check unsaved drafts before navigating, keyboard and mobile forms, and visible storage errors. CI and real-device review required before merge. Links, daily priorities and remaining habits are still outstanding.
+
+## M2b additional gate
+Test amount addition/edit/deletion and validation, binary completion/skip/undo, weekday schedules, tomorrow vs explicit today changes, archive history, goal links, three priority slots, date isolation, version 2 migration and offline edits. Check current and historical day views, manual mobile interaction and real-device installation. M2b is not a public-release gate; full PRD testing remains M5.

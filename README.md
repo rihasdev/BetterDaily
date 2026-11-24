@@ -6,7 +6,7 @@ A free, gamified, local-first PWA for intentional living. No account, ads or clo
 
 ## Development status
 
-M2a in development: editable Life Vision categories and a daily Morning Affirmation check-in, stored locally. Goal-to-habit links, daily priorities, quantity tracking, journals, points, backup and faith tools remain planned. This is not the complete MVP. Use fictitious information only in development.
+M2b in development: editable Life Vision, daily affirmation, sunlight/water/movement quantities, custom recurring habits, three linked priorities, date-specific history and local plan revisions. Journals, XP, backup and faith tools remain planned. This is not the complete MVP. Use fictitious information only in development.
 
 ## Get started
 
