@@ -33,3 +33,12 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# BetterDaily local-only files
+node_modules/
+dist/
+playwright-report/
+test-results/
+.env*
+!.env.example
+*.backup.json
