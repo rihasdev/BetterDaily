@@ -4,13 +4,14 @@ import { readSettings,writeSettings,type Settings } from '../db/settings'
 import { localDate } from '../domain/date'
 import { Today } from '../features/today/Today'
 import { UpdateNotice } from '../components/UpdateNotice'
+import { LifeVision } from '../features/goals/LifeVision'
+import { HabitSettings } from '../features/habits/HabitSettings'
+import { History, Routine } from '../features/habits/Routine'
 
 const tabs=[{name:'Today',icon:House},{name:'Goals',icon:Target},{name:'Journal',icon:BookOpen},{name:'Progress',icon:ChartNoAxesColumn}] as const
 type Tab=typeof tabs[number]['name']|'Settings'
 const planned={
-  Goals:['Life vision','Personal goals','Daily priorities'],
   Journal:['Micro-miracles','Mindful decisions','Thought journal','Evening reflection'],
-  Progress:['Habit history','XP and levels','Achievements','Activity summaries'],
 }
 export default function App(){
   const [settings,setSettings]=useState<Settings|null>(null)
@@ -49,8 +50,8 @@ export default function App(){
     <UpdateNotice/>
     <main id="main">
       <p className="date">{date} · Early development</p>
-      {tab==='Today'?<Today faithMode={settings.faithMode}/>:tab==='Settings'?<>
-        <h1>Settings</h1><section className="card"><h2>Personalisation</h2><label className="toggle"><input type="checkbox" checked={settings.faithMode} disabled={busy} onChange={e=>void save({faithMode:e.target.checked})}/> Islamic lifestyle mode</label><label className="select-label">Appearance<select value={settings.theme} disabled={busy} onChange={e=>void save({theme:e.target.value as Settings['theme']})}><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>{busy&&<p role="status">Saving…</p>}{error&&<p role="alert">{error}</p>}</section><section className="card"><h2>Privacy & installation</h2><p>Preferences live on this device. This is not encrypted storage. Backup, restore and data deletion controls will be implemented before MVP release.</p><p>When using the production build, look for Install app or Add to Home Screen in your browser menu.</p></section>
+      {tab==='Today'?<Today faithMode={settings.faithMode} date={date}/>:tab==='Goals'?<><LifeVision/><Routine key={date} date={date} today={date} prioritiesOnly/></>:tab==='Progress'?<History today={date}/>:tab==='Settings'?<>
+        <h1>Settings</h1><section className="card"><h2>Personalisation</h2><label className="toggle"><input type="checkbox" checked={settings.faithMode} disabled={busy} onChange={e=>void save({faithMode:e.target.checked})}/> Islamic lifestyle mode</label><label className="select-label">Appearance<select value={settings.theme} disabled={busy} onChange={e=>void save({theme:e.target.value as Settings['theme']})}><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label>{busy&&<p role="status">Saving…</p>}{error&&<p role="alert">{error}</p>}</section><section className="card"><h2>Privacy & installation</h2><p>Preferences live on this device. This is not encrypted storage. Backup, restore and data deletion controls will be implemented before MVP release.</p><p>When using the production build, look for Install app or Add to Home Screen in your browser menu.</p></section><HabitSettings key={date} today={date}/>
       </>:<><h1>{tab}</h1><section className="card"><h2>Coming next</h2><p className="muted">This screen is part of the app shell. These tools are not yet functional.</p>{planned[tab].map(name=><div className="feature-row" key={name}>{name}<small>Planned</small></div>)}</section></>}
     </main>
     <nav aria-label="Main navigation">{tabs.map(({name,icon:Icon})=><button key={name} aria-current={tab===name?'page':undefined} onClick={()=>setTab(name)}><Icon size={22} aria-hidden="true"/><span>{name}</span></button>)}</nav>
