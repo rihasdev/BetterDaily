@@ -9,8 +9,14 @@ test('onboarding, navigation, local settings and offline shell',async({page,cont
   await page.getByRole('button',{name:'Goals',exact:true}).click()
   await expect(page.getByRole('heading',{name:'Goals',exact:true})).toBeVisible()
   await page.getByRole('button',{name:'Settings',exact:true}).click()
-  await page.getByRole('checkbox',{name:'Islamic lifestyle mode'}).check()
-  await expect(page.getByRole('checkbox',{name:'Islamic lifestyle mode'})).toBeChecked()
+  const faithToggle=page.getByRole('checkbox',{name:'Islamic lifestyle mode'})
+  await expect(faithToggle).not.toBeChecked()
+  // Controlled input reflects the committed IndexedDB value only after the async save.
+  // click() performs the action; the retrying assertions verify the final state.
+  await faithToggle.click()
+  await expect(faithToggle).toBeChecked()
+  await expect(faithToggle).toBeEnabled()
+  await expect(page.getByRole('alert')).toHaveCount(0)
   await page.getByLabel('Appearance').selectOption('dark')
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark')
   await page.reload()
